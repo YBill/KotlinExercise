@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewTest() {
-        val forecastList = findViewById(R.id.forecast_list) as RecyclerView
+        val forecastList = findViewById(R.id.forecastList) as RecyclerView
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.adapter = TestAdapter(items)
         doAsync {
