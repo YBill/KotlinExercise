@@ -13,9 +13,9 @@ class ForecastDbHelper(ctx: App = App.instance) : ManagedSQLiteOpenHelper(ctx, F
         db.createTable(CityForecastTable.NAME, true,
                 CityForecastTable.ID to INTEGER + PRIMARY_KEY,
                 CityForecastTable.CITY to TEXT,
-                Pair(CityForecastTable.COUNTRY, TEXT))
+                CityForecastTable.COUNTRY to TEXT)
         db.createTable(DayForecastTable.NAME, true,
-                DayForecastTable.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+                DayForecastTable.ID to INTEGER + PRIMARY_KEY, // AUTOINCREMENT kotlin设置自增解析不了，什么鬼
                 DayForecastTable.DATE to INTEGER,
                 DayForecastTable.DESCRIPTION to TEXT,
                 DayForecastTable.HIGH to INTEGER,

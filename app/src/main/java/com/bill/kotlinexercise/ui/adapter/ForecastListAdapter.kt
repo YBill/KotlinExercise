@@ -4,14 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.bill.kotlinexercise.R
-import com.bill.kotlinexercise.domain.Forecast
-import com.bill.kotlinexercise.domain.ForecastList
+import com.bill.kotlinexercise.domain.model.Forecast
+import com.bill.kotlinexercise.domain.model.ForecastList
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_forecast.view.*
-import org.jetbrains.anko.find
 
 /**
  * Created by Bill on 2017/6/15.
@@ -50,7 +47,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.context).load(iconUrl).into(itemView.icon)
-                itemView.date.text = data
+                itemView.date.text = data.toString()
                 itemView.description.text = description
                 itemView.maxTemperature.text = high.toString()
                 itemView.minTemperature.text = low.toString()

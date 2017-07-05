@@ -1,4 +1,4 @@
-package com.bill.kotlinexercise.data
+package com.bill.kotlinexercise.data.server
 
 /**
  * Created by Bill on 2017/6/30.

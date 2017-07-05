@@ -1,7 +1,8 @@
-package com.bill.kotlinexercise.domain
+package com.bill.kotlinexercise.domain.commands
 
-import com.bill.kotlinexercise.data.ForecastDataMapper
-import com.bill.kotlinexercise.network.ForecastRequest
+import com.bill.kotlinexercise.data.server.ForecastDataMapper
+import com.bill.kotlinexercise.domain.model.ForecastList
+import com.bill.kotlinexercise.data.server.ForecastRequest
 
 /**
  * Created by Bill on 2017/6/30.
