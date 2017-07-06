@@ -18,5 +18,5 @@ object DayForecastTable {
     val HIGH = "high"
     val LOW = "low"
     val ICON_URL = "iconUrl"
-    val CITY_ID = "cityId"
+    val CITY_ID = "cityId" // 关联上面city表的_id
 }
