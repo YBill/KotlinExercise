@@ -26,7 +26,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindForecast(weekForecast[position])
+        holder.bindForecast(weekForecast[position], weekForecast.id)
     }
 
     class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
@@ -44,7 +44,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
             minTemperatureView = view.find(Rze.id.minTemperature)
         }*/
 
-        fun bindForecast(forecast: Forecast) {
+        fun bindForecast(forecast: Forecast, id: Long) {
             with(forecast) {
                 Picasso.with(itemView.context).load(iconUrl).into(itemView.icon)
                 itemView.date.text = this.convertDate()
