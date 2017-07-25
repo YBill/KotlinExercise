@@ -16,7 +16,7 @@ data class ForecastList(val id: Long, val city: String, val country: String, val
     }
 }
 
-data class Forecast(val data: Long, val description: String, val high: Int, val low: Int, val iconUrl: String) {
+data class Forecast(val id: Long, val data: Long, val description: String, val high: Int, val low: Int, val iconUrl: String) {
     fun convertDate(data: Long = this.data): String {
         val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
         return df.format(data * 1000)

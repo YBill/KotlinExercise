@@ -25,8 +25,8 @@ class ForecastDbHelper(ctx: App = App.instance) : ManagedSQLiteOpenHelper(ctx, F
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.dropTable(CityForecastTable.NAME, true)
         db.dropTable(DayForecastTable.NAME, true)
+        db.dropTable(CityForecastTable.NAME, true)
         onCreate(db)
     }
 

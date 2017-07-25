@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.bill.kotlinexercise.R
 import com.bill.kotlinexercise.domain.commands.RequestForecastCommand
 import com.bill.kotlinexercise.domain.datasource.ForecastProvider
+import com.bill.kotlinexercise.domain.model.Forecast
 import com.bill.kotlinexercise.domain.model.ForecastList
 import com.bill.kotlinexercise.ui.adapter.ForecastListAdapter
 import com.bill.kotlinexercise.utils.Logger
@@ -30,25 +31,28 @@ class ForecastActivity : AppCompatActivity() {
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         doAsync {
+            var list: ForecastList? = RequestForecastCommand("94043").execute()
             val forecastDb = ForecastProvider()
-            var list: ForecastList? = forecastDb.requestByZipCode("5375480")
-            Logger.instance.i("list:" + list)
-            if (list == null) {
-                list = RequestForecastCommand("94043").execute()
+            if (list != null) {
                 forecastDb.saveForecastList(list)
+            } else {
+                list = forecastDb.requestByZipCode("5375480")
             }
+            Logger.instance.i("list:" + list)
 
             uiThread {
-                forecastList.adapter = ForecastListAdapter(list!!) {
-                    toast(it.data.toString())
-                    val intent = Intent()
-                    //获取intent对象
-                    intent.setClass(ctx, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.ID, it.data)
-                    intent.putExtra(DetailActivity.ID, it.description)
-                    // 获取class是使用::反射
-                    startActivity(intent)
-                }
+                forecastList.adapter = ForecastListAdapter(list!!, object : ForecastListAdapter.OnItemClickListener {
+                    override fun invoke(forecast: Forecast, city: String) {
+                        toast(forecast.data.toString())
+                        val intent = Intent()
+                        //获取intent对象
+                        intent.setClass(ctx, DetailActivity::class.java)
+                        intent.putExtra(DetailActivity.ID, forecast.id)
+                        intent.putExtra(DetailActivity.CITY_NAME, city)
+                        // 获取class是使用::反射
+                        startActivity(intent)
+                    }
+                })
             }
         }
     }

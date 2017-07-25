@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.layout_forecast.view.*
 /**
  * Created by Bill on 2017/6/15.
  */
-class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Forecast) -> Unit) :
+class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: OnItemClickListener) :
         RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,10 +26,10 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindForecast(weekForecast[position], weekForecast.id)
+        holder.bindForecast(weekForecast[position], weekForecast.city)
     }
 
-    class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(view) {
 //        private val iconView: ImageView
 //        private val dateView: TextView
 //        private val descriptionView: TextView
@@ -44,7 +44,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
             minTemperatureView = view.find(Rze.id.minTemperature)
         }*/
 
-        fun bindForecast(forecast: Forecast, id: Long) {
+        fun bindForecast(forecast: Forecast, city: String) {
             with(forecast) {
                 Picasso.with(itemView.context).load(iconUrl).into(itemView.icon)
                 itemView.date.text = this.convertDate()
@@ -52,15 +52,15 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
                 itemView.maxTemperature.text = high.toString()
                 itemView.minTemperature.text = low.toString()
                 itemView.setOnClickListener {
-                    itemClick(forecast)
+                    itemClick.invoke(forecast, city)
                 }
             }
         }
 
     }
 
-    /* interface OnItemClickListener {
-         operator fun invoke(forecast: Forecast)
-     }*/
+    interface OnItemClickListener {
+        operator fun invoke(forecast: Forecast, city: String)
+    }
 
 }
