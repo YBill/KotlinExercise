@@ -13,6 +13,7 @@ import com.bill.kotlinexercise.domain.model.ForecastList
 import com.bill.kotlinexercise.ui.adapter.ForecastListAdapter
 import com.bill.kotlinexercise.utils.Logger
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
@@ -23,6 +24,7 @@ class ForecastActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        toolbar.title = "首页"
         initView()
     }
 
