@@ -16,6 +16,7 @@ class ForecastRequest(val zipCode: String) {
     }
 
     fun execute(): ForecastResult {
+        Log.d(javaClass.simpleName, COMPLETE_URL + zipCode)
         val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
         Log.d(javaClass.simpleName, forecastJsonStr)
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)

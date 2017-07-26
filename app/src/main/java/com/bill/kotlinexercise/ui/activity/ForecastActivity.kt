@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class ForecastActivity : AppCompatActivity() {
@@ -45,7 +44,7 @@ class ForecastActivity : AppCompatActivity() {
             uiThread {
                 forecastList.adapter = ForecastListAdapter(list!!, object : ForecastListAdapter.OnItemClickListener {
                     override fun invoke(forecast: Forecast, city: String) {
-                        toast(forecast.data.toString())
+//                        toast(forecast.data.toString())
                         val intent = Intent()
                         //获取intent对象
                         intent.setClass(ctx, DetailActivity::class.java)
