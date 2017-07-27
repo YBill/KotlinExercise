@@ -34,7 +34,7 @@ class ForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.insta
         forecast?.let { dataMapper.convertDayToDomain(it) }
     }
 
-    fun saveForecast(forecast: ForecastList) = forecastDbHelper.use {
+    override fun saveForecast(forecast: ForecastList) = forecastDbHelper.use {
 
         clear(CityForecastTable.NAME)
         clear(DayForecastTable.NAME)

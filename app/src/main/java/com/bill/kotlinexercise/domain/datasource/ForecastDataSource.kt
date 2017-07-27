@@ -10,4 +10,6 @@ interface ForecastDataSource {
     fun requestForecastByZipCode(zipCode: String, data: Long): ForecastList?
 
     fun requestDayForecast(id: Long): Forecast?
+
+    fun saveForecast(list: ForecastList)
 }

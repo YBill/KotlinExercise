@@ -7,10 +7,9 @@ import com.bill.kotlinexercise.domain.model.ForecastList
 /**
  * Created by Bill on 2017/7/6.
  */
-class ForecastProvider() {
+class ForecastProvider {
 
     companion object {
-        val DAY_IN_MILLIS = 1000 * 60 * 60 * 24
         val forecastDb = ForecastDb()
     }
 
@@ -27,7 +26,5 @@ class ForecastProvider() {
     fun saveForecastList(list: ForecastList) {
         forecastDb.saveForecast(list)
     }
-
-    private fun todayTimeSpan() = System.currentTimeMillis() / DAY_IN_MILLIS * DAY_IN_MILLIS
 
 }
